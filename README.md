@@ -14,13 +14,38 @@ pnpm dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+## Code linting
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+We are mainly using eslint with rule configured in `.eslintrs.json` file. More options can be found at https://eslint.org/docs/latest/rules/
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+To make VSCode automatically format on save, follows belowed steps:
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- Hit Control + Shift + P (On Mac you would want to hit the Command key instead of Control) and search for >Format Document With.... Check if that work.
+
+- If it works, then maybe your setting is overridden. Open your settings.json file (Use Control + ,, then on the top right corner you would see the open settings.json). Check the javascriptreact section.
+
+- Here is the example: this setting turns on formatOnSave for all the document type, but with .jsx extension, the formatOnSave is disabled, instead the files are formatted using eslint
+
+```
+{
+  // Other settings, don't mind it
+  // ...
+
+  "editor.formatOnSave": true,
+  "[javascriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": true
+    },
+    "editor.formatOnSave": false
+  },
+
+  // Other settings, don't mind it
+  // ...
+}
+```
+
+You may want to update the settings based on your need.
 
 ## Learn More
 
