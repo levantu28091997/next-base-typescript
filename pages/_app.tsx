@@ -1,6 +1,9 @@
 import React, { ReactNode } from 'react'
-import '@/styles/globals.css'
 import type { AppProps } from 'next/app'
+import { ThemeProvider } from '@mui/material'
+
+import '@/styles/globals.css'
+import { theme } from '@/utils/theme'
 import Layout from '@/components/Layout/layout'
 import layoutAuth from '@/components/LayoutAuth/layoutAuth'
 
@@ -19,8 +22,10 @@ export default function App({ Component, pageProps }: Props) {
     const Layout = layouts[Component.layout??'default'] || ((children?: ReactNode) => <>{children}</>)
 
     return (
-        <Layout>
-            <Component {...pageProps} />
-        </Layout>
+        <ThemeProvider theme={theme}>
+            <Layout>
+                <Component {...pageProps} />
+            </Layout>
+        </ThemeProvider>
     )
 }
